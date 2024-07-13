@@ -1,5 +1,4 @@
-// src/App.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import TaskComponent from './TaskComponent';
@@ -27,6 +26,19 @@ import GamePage from "./GamePage"; // Import the new GamePage component
 const manifestUrl = "https://task.pooldegens.meme/tonconnect-manifest.json";
 
 function App() {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Chrome requires returnValue to be set
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       <Router>
