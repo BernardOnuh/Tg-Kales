@@ -1,0 +1,62 @@
+.poolTap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Use viewport height to ensure full screen coverage */
+  overflow: hidden;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-right: 60px solid transparent; /* Create a border to ensure balls are fully visible */
+}
+
+.ball {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  animation: fallDown 15s linear;
+  cursor: pointer;
+  z-index: 10;
+}
+
+@keyframes fallDown {
+  from {
+    top: -60px; /* Start above the screen */
+  }
+  to {
+    top: calc(100vh + 60px); /* Fall beyond the bottom of the viewport */
+  }
+}
+
+.exploding {
+  animation: explode 1s ease-out;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.gameInfo {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 15px;
+  z-index: 25;
+  font-size: 14px;
+}
+
+.gameInfo span {
+  margin: 0 5px;
+}
